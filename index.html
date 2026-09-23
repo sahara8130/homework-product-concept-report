@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>作业工具产品概念｜定方向</title>
+  <style>
+    :root{
+      --blue:#075bd8;--navy:#183861;--ink:#14243b;--muted:#667892;
+      --line:#cddcf0;--soft:#eef5fd;--soft2:#dceafd;--warm:#f4f1ed;
+      --paper:#fff;--accent:#ee5d3e;
+      --type-title:54px;--type-subtitle:34px;--type-body:26px;--type-small:21px;
+      --pad-x:68px;--pad-top:34px;--pad-bottom:46px;--gap-title:20px;--gap-item:18px;
+      font-family:-apple-system,"SF Pro Text","PingFang SC","Microsoft YaHei",sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}body{margin:0;background:#edf2f8;color:var(--ink)}
+    .site-nav{position:sticky;top:0;z-index:20;height:64px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 max(28px,calc((100vw - 1600px)/2));gap:30px;box-shadow:0 4px 18px rgba(24,56,97,.07)}
+    .site-nav strong{color:var(--blue);font-size:22px;margin-right:auto}.site-nav a{font-size:17px;font-weight:760;color:var(--navy);text-decoration:none;padding:21px 4px 17px;border-bottom:4px solid transparent}.site-nav a:hover{color:var(--blue);border-bottom-color:var(--blue)}
+    .report section{padding:28px 24px;scroll-margin-top:76px}.report section:nth-child(even){background:#e7eef7}.report section>.slide{width:min(1600px,100%);height:auto;min-height:960px;margin:0 auto;border-radius:20px;box-shadow:0 18px 48px rgba(24,56,97,.10)}
+    section[data-label] > *:not(img):not(picture):not(video):not(svg):not(canvas){height:100%;box-sizing:border-box}
+    .slide{background:var(--paper);padding:var(--pad-top) var(--pad-x) var(--pad-bottom);overflow:hidden;position:relative}
+    .topline{display:flex;align-items:center;gap:24px;height:70px}
+    .chapter{align-self:stretch;display:flex;align-items:center;background:var(--blue);color:#fff;font-size:28px;font-weight:850;padding:0 28px 0 22px;clip-path:polygon(0 0,88% 0,100% 50%,88% 100%,0 100%)}
+    h1{font-size:var(--type-title);line-height:1.08;margin:0;color:var(--blue);font-weight:850;letter-spacing:-1px}
+    .logo{margin-left:auto;color:var(--blue);font-size:34px;font-weight:950;font-style:italic}
+    .thesis{margin:14px 0 18px;color:var(--muted);font-size:23px;line-height:1.55}
+    .main-grid{display:grid;grid-template-columns:32% 68%;gap:22px;height:850px}
+    .left-col{display:grid;grid-template-rows:116px 1fr;gap:16px}
+    .quote{background:#f1f3f6;padding:15px 20px;font-size:24px;font-weight:750;line-height:1.48;color:var(--ink)}
+    .quote span{display:block}.quote b{color:var(--blue);font-size:17px;margin-right:8px}
+    .photo{width:100%;height:100%;min-height:0;object-fit:cover;object-position:center 52%;border:1px solid var(--line);border-radius:18px}
+    .solution{border:2px solid var(--line);border-radius:18px;padding:22px 24px;background:#fff}
+    .solution h2,.panel h2{font-size:29px;margin:0 0 15px;color:var(--navy)}
+    .solution ol{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:20px;line-height:1.35;color:var(--ink)}
+    .solution li{display:grid;grid-template-columns:38px 1fr;gap:8px}.solution .num{color:var(--blue);font-weight:900}
+    .right-col{display:grid;grid-template-rows:330px 230px 252px;gap:16px}
+    .panel{border:2px solid var(--line);border-radius:18px;padding:22px 26px;background:#fff}
+    .profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+    .profile-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+    .profile-head h2{margin:0}.role-note{font-size:17px;color:var(--muted)}
+    .tags{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+    .tag{background:var(--soft2);padding:8px 10px;text-align:center;font-size:20px;font-weight:750;color:var(--navy)}
+    .views{display:grid;gap:6px;margin:0;padding:0;list-style:none;font-size:21px;line-height:1.32;color:var(--ink)}
+    .views li::before{content:"—";color:var(--blue);margin-right:8px;font-weight:900}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+    .behavior h2,.pain h2{margin-bottom:12px}
+    .kv{display:grid;grid-template-columns:118px 1fr;gap:8px 12px;font-size:20px;line-height:1.34}
+    .kv dt{font-weight:850;color:var(--navy)}.kv dd{margin:0;color:var(--ink)}
+    .pain-list{display:grid;gap:9px;font-size:20px;line-height:1.3;color:var(--ink)}
+    .pain-item{display:grid;grid-template-columns:44px 1fr;gap:9px;align-items:start}
+    .pain-item .idx{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--soft2);color:var(--blue);font-weight:900}
+    .source-note{position:absolute;right:68px;bottom:16px;color:#8997aa;font-size:15px}
+
+    .quote-bar{display:grid;grid-template-columns:160px 1fr;gap:22px;align-items:center;background:#edf5ff;border:2px solid #bcd6fa;border-radius:16px;padding:17px 24px;margin:13px 0 20px}
+    .quote-bar .label{color:var(--blue);font-weight:900;font-size:22px}.quote-bar blockquote{margin:0;font-size:26px;line-height:1.45;font-weight:760;color:var(--navy)}
+    .journey-table{display:grid;grid-template-columns:112px repeat(6,minmax(0,1fr));border:1px solid #cbd8e9;border-radius:14px;overflow:hidden;margin-bottom:16px;background:#fff}
+    .journey-table>div{min-width:0;padding:9px 10px;border-right:1px solid #cbd8e9;border-bottom:1px solid #cbd8e9;font-size:13px;line-height:1.42;color:#31445f}.journey-table>div:nth-child(7n){border-right:0}.journey-table>div:nth-last-child(-n+7){border-bottom:0}
+    .journey-table .corner,.journey-table .stage{background:#315a93;color:#fff;font-weight:900;text-align:center}.journey-table .stage.pre{background:#4f77ae}.journey-table .stage.mid{background:#3e5f9d}.journey-table .stage.post{background:#2f4e7d}
+    .journey-table .row-label{background:#f3f7fc;color:#17395f;font-weight:900;display:flex;align-items:center;justify-content:center;text-align:center}.journey-table .quote-cell{background:#fff9e8;color:#765018;font-weight:700}.journey-table .emotion-cell{text-align:center;font-weight:900;color:#df4b34}.journey-table .pain-cell{background:#fff2f2;color:#6e2d32}.journey-table .need-cell{background:#eefbf3;color:#205d3b}.journey-table small{display:block;margin-top:4px;color:#7a8799;font-weight:500}
+    .needs-title{display:flex;align-items:center;gap:14px;margin:0 0 12px}.needs-title h2{font-size:32px;margin:0;color:var(--navy)}.needs-title span{font-size:17px;color:var(--muted)}
+    .needs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .need{border-top:5px solid var(--blue);background:#f8fbff;padding:18px 20px;min-height:300px}
+    .need .n{font-size:22px;line-height:1.3;color:var(--blue);font-weight:900;margin-bottom:12px}.need h3{font-size:25px;margin:4px 0 10px;color:var(--navy)}
+    .need p{font-size:19px;line-height:1.55;margin:0;color:#415674}.need strong{color:var(--ink)}
+    .evidence{margin-top:10px;color:var(--muted);font-size:16px}
+    .need .user-quote{margin-top:14px;padding:11px 13px;background:#eef5ff;border-left:4px solid #74a6e8;color:#24466f;font-size:14px;line-height:1.5;font-weight:700}
+    .pain-strip{display:flex;align-items:center;gap:18px;margin:10px 0 18px;padding:13px 18px;background:#f3f7fc;border-left:6px solid var(--blue);font-size:19px;color:var(--ink)}
+    .pain-strip strong{font-size:21px;color:var(--navy)}.pain-strip span{padding-right:18px;border-right:1px solid #bfd0e6}.pain-strip span:last-child{border-right:0}
+    .matrix-wrap{margin:18px 0 24px}.matrix-title{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:10px}.matrix-title h2{font-size:25px;margin:0;color:var(--navy)}.legend{font-size:14px;color:var(--muted)}.legend .high{color:#08765f;font-weight:800}.legend .mid{color:#b06a00;font-weight:800}.legend .low{color:#c43d3d;font-weight:800}
+    .coverage{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;table-layout:fixed}
+    .coverage th,.coverage td{padding:11px 9px;border-right:1px solid #dce6f2;border-bottom:1px solid #dce6f2;text-align:center;font-size:15px;line-height:1.3;color:var(--ink)}.coverage th:last-child,.coverage td:last-child{border-right:0}.coverage tr:last-child td{border-bottom:0}
+    .coverage thead th{background:#eaf2fc;color:var(--navy);font-weight:850}.coverage thead th:first-child{width:158px}.coverage tbody th{background:#f6f8fb;text-align:left;color:var(--navy);font-weight:800}
+    .coverage .high{color:#08765f;font-weight:850}.coverage .mid{color:#b06a00;font-weight:850}.coverage .low{color:#c43d3d;font-weight:850}.coverage small{display:block;margin-top:2px;color:#596b83;font-size:12px;font-weight:500}
+    .half-check{display:inline-block;background:linear-gradient(90deg,#b06a00 52%,#d5dce6 52%);-webkit-background-clip:text;background-clip:text;color:transparent!important;font-weight:900}
+    .matrix-note{margin:8px 0 0;color:var(--muted);font-size:13px}.benchmark-section-title{font-size:25px;margin:0 0 10px;color:var(--navy)}
+    .benchmarks{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;min-height:540px}
+    .benchmark{border:2px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;color:var(--ink)}
+    .benchmark-head{height:100px;padding:16px 20px;background:var(--soft);border-bottom:1px solid var(--line)}
+    .benchmark-head .eyebrow{font-size:16px;font-weight:900;color:var(--blue);letter-spacing:1px}.benchmark-head h2{font-size:27px;line-height:1.15;margin:5px 0 0;color:var(--navy)}
+    .benchmark-body{padding:16px 20px;display:grid;gap:11px}
+    .bench-row{display:grid;grid-template-columns:112px 1fr;gap:10px;font-size:18px;line-height:1.37;padding-bottom:10px;border-bottom:1px solid #e6edf6}
+    .bench-row:last-child{border-bottom:0;padding-bottom:0}.bench-row b{color:var(--blue)}.bench-row span{color:var(--ink)}
+    .conclusion{margin-top:18px;border-top:4px solid var(--blue);display:grid;grid-template-columns:1fr 1fr 1.18fr;background:#f7faff;min-height:205px}
+    .conclusion > div{padding:18px 22px;border-right:1px solid var(--line)}.conclusion > div:last-child{border-right:0;background:#eaf3ff}
+    .conclusion h3{font-size:22px;margin:0 0 10px;color:var(--navy)}.conclusion p{font-size:18px;line-height:1.5;margin:0;color:var(--ink)}
+    .source-links{position:absolute;left:68px;bottom:14px;font-size:14px;color:#8492a6}.source-links a{color:#697b94;text-decoration:none;margin-right:12px}
+    #competition .source-links{position:static;margin-top:8px}
+    .landscape{display:grid;grid-template-columns:190px 1.1fr 1fr 1fr;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;margin:0 0 24px}.landscape>div{padding:13px 15px;border-right:1px solid #dce6f2;border-bottom:1px solid #dce6f2;font-size:15px;line-height:1.45;color:var(--ink)}.landscape>div:nth-child(4n){border-right:0}.landscape>div:nth-last-child(-n+4){border-bottom:0}.landscape .lh{background:#eaf2fc;font-weight:850;color:var(--navy)}.landscape .cat{font-weight:850;color:var(--blue);background:#f7f9fc}.landscape b{display:block;color:var(--navy);margin-bottom:3px}
+    .insight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:0 0 22px}.insight-card{padding:18px 20px;border-top:4px solid var(--blue);background:#f7faff;min-height:150px}.insight-card .num{font-size:13px;color:var(--blue);font-weight:900}.insight-card h3{font-size:19px;margin:5px 0 8px;color:var(--navy)}.insight-card p{font-size:15px;line-height:1.5;margin:0;color:var(--ink)}
+    .insight-grid.four{grid-template-columns:repeat(2,1fr)}
+    .opportunity-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px}.opp{padding:18px 20px;background:#eaf3ff;border:1px solid #bdd5f4;border-radius:12px}.opp h3{font-size:19px;margin:0 0 8px;color:var(--navy)}.opp p{font-size:15px;line-height:1.5;margin:0;color:var(--ink)}.opp .boundary{display:block;margin-top:8px;color:#5d6f86;font-size:13px}
+    .feature-table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;table-layout:fixed;margin-bottom:24px}.feature-table th,.feature-table td{padding:10px 7px;border-right:1px solid #dce6f2;border-bottom:1px solid #dce6f2;text-align:center;font-size:13px;line-height:1.25;color:var(--ink)}.feature-table th:last-child,.feature-table td:last-child{border-right:0}.feature-table tr:last-child td{border-bottom:0}.feature-table thead th{background:#eaf2fc;color:var(--navy);font-weight:850}.feature-table thead th:first-child{width:150px}.feature-table tbody th{background:#f7f9fc;text-align:left;color:var(--navy);padding-left:12px}.yes{color:#08765f;font-weight:900}.part{color:#b06a00;font-weight:900}.no{color:#a1abba;font-weight:800}
+    .competitor-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:24px}.competitor-card{border:1px solid var(--line);border-radius:13px;background:#fff;padding:16px 18px}.competitor-card h3{font-size:18px;margin:0 0 10px;color:var(--navy)}.competitor-card .learn,.competitor-card .watch{display:grid;grid-template-columns:76px 1fr;gap:8px;font-size:14px;line-height:1.45;margin-top:7px}.competitor-card .learn b{color:#08765f}.competitor-card .watch b{color:#c14d32}.competitor-card .feedback{margin-top:10px;padding-top:9px;border-top:1px solid #e4eaf2;font-size:13px;line-height:1.45;color:#53657d}.competitor-card a{color:var(--blue);text-decoration:none}
+    .ai-teacher-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}.ai-teacher{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}.ai-teacher-head{padding:14px 17px;background:#eaf2fc;border-bottom:1px solid #d5e2f1}.ai-teacher-head h3{margin:0;color:var(--navy);font-size:20px}.ai-teacher-head p{margin:4px 0 0;color:#5f7189;font-size:13px}.ai-teacher-body{padding:15px 17px}.teach-flow{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-bottom:13px}.teach-flow span{padding:5px 8px;background:#f4f7fb;border:1px solid #dfe7f1;border-radius:6px;color:#30445f;font-size:12px;font-weight:700}.teach-flow i{font-style:normal;color:#94a3b7;font-size:12px}.ai-block{padding-top:10px;margin-top:10px;border-top:1px solid #e5eaf1}.ai-block:first-of-type{padding-top:0;margin-top:0;border-top:0}.ai-block b{display:block;margin-bottom:4px;font-size:14px}.ai-block p{margin:0;color:#40536c;font-size:13px;line-height:1.52}.ai-block.learn b{color:#08765f}.ai-block.limit b{color:#c14d32}.ai-teacher-key{margin-top:11px;padding:10px 11px;background:#fff7df;border-left:4px solid #e3ae2c;color:#594719;font-size:13px;line-height:1.45;font-weight:700}
+    .complaint-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px}.complaint{background:#fff5f1;border-top:4px solid #d8785c;padding:14px 15px}.complaint h3{font-size:17px;margin:0 0 7px;color:#9e422d}.complaint p{font-size:13px;line-height:1.48;margin:0;color:var(--ink)}
+    /* 网页阅读密度：比演示模式更紧凑 */
+    .report .slide{padding:28px 44px 40px}.report .topline{height:54px;gap:18px}.report .chapter{font-size:20px;padding:0 22px 0 17px}.report h1{font-size:36px}.report .logo{font-size:25px}.report .thesis{font-size:17px;margin:9px 0 13px}.report .quote{font-size:17px}.report .solution h2,.report .panel h2{font-size:22px}.report .solution ol,.report .tags,.report .views,.report .kv,.report .pain-list{font-size:15px}.report .tag{font-size:15px}.report .quote-bar blockquote{font-size:19px}.report .quote-bar .label{font-size:17px}.report .step h3{font-size:19px}.report .step-body{font-size:15px}.report .needs-title h2{font-size:25px}.report .need h3{font-size:20px}.report .need p{font-size:15px}.report .benchmark-head h2{font-size:22px}.report .bench-row{font-size:15px;grid-template-columns:94px 1fr}.report .conclusion h3{font-size:19px}.report .conclusion p{font-size:15px}
+    @media(max-width:1100px){.site-nav{overflow:auto}.site-nav strong{display:none}.main-grid{grid-template-columns:1fr;height:auto}.left-col,.right-col{height:auto}.benchmarks,.needs,.conclusion{grid-template-columns:1fr;height:auto}.journey-table{overflow:auto;grid-template-columns:105px repeat(6,210px)}.slide{overflow:visible}.report section>.slide{min-height:auto}.source-note,.source-links{position:static;margin-top:18px}.topline h1{font-size:38px}.logo{display:none}}
+    @media print{body{background:#fff}.site-nav{display:none}.report section{break-after:page;padding:0}.report section>.slide{box-shadow:none;border-radius:0}}
+
+    .site-nav{gap:22px}.site-nav a{font-size:15px;white-space:nowrap}.site-nav .group{color:#8a97aa;font-size:12px;font-weight:800;letter-spacing:.08em}
+    .cover-slide{min-height:880px!important;background:linear-gradient(135deg,#062d75 0%,#075bd8 58%,#4c92ef 100%)!important;color:#fff;display:grid;grid-template-columns:1.08fr .92fr;align-items:center;padding:70px 78px!important}
+    .cover-copy .kicker{font-size:18px;letter-spacing:.14em;font-weight:800;opacity:.8}.cover-copy h1{color:#fff;font-size:68px;line-height:1.08;margin:22px 0 20px}.cover-copy p{font-size:24px;line-height:1.6;margin:0;max-width:720px;color:#eaf3ff}.cover-copy .scope{display:inline-block;margin-top:38px;padding:12px 18px;border:1px solid rgba(255,255,255,.5);border-radius:999px;font-size:16px}.cover-visual{height:620px;border-radius:26px;overflow:hidden;position:relative;box-shadow:0 28px 70px rgba(0,25,72,.34)}.cover-visual img{width:100%;height:100%;object-fit:cover}.cover-visual:after{content:"在作业中获得胜任感，逐步实现自主学习";position:absolute;left:24px;right:24px;bottom:24px;padding:20px 24px;background:rgba(8,30,68,.82);backdrop-filter:blur(8px);border-radius:16px;font-size:25px;font-weight:850}
+    .contents{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:42px}.toc-card{min-height:260px;padding:28px;border:1px solid var(--line);border-top:5px solid var(--blue);background:#f8fbff}.toc-card .n{font-size:44px;color:#9abbe7;font-weight:900}.toc-card h2{font-size:27px;color:var(--navy);margin:14px 0}.toc-card p{font-size:17px;line-height:1.65;color:#5e718b;margin:0}
+    .section-lead{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;margin-top:18px}.hero-point{padding:28px 32px;background:#eaf3ff;border-left:7px solid var(--blue);border-radius:0 16px 16px 0}.hero-point .eyebrow{font-size:15px;color:var(--blue);font-weight:900}.hero-point h2{font-size:34px;line-height:1.25;color:var(--navy);margin:10px 0}.hero-point p{font-size:18px;line-height:1.65;color:#415674;margin:0}.boundary-list{display:grid;gap:12px}.boundary-item{padding:18px 20px;border:1px solid var(--line);border-radius:12px;background:#fff}.boundary-item b{display:block;color:var(--navy);font-size:18px;margin-bottom:6px}.boundary-item span{font-size:15px;line-height:1.5;color:#5a6c84}
+    .evidence-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}.evidence-card{padding:20px;border-top:4px solid var(--blue);background:#f7faff}.evidence-card .label{font-size:13px;color:var(--blue);font-weight:900}.evidence-card h3{font-size:20px;margin:7px 0;color:var(--navy)}.evidence-card p{font-size:15px;line-height:1.55;margin:0;color:#465a74}
+    .empty-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:26px}.empty-card{min-height:360px;border:1px dashed #afbed1;border-radius:14px;padding:24px;background:#fbfcfe}.empty-card h2{font-size:23px;color:var(--navy);margin:0 0 16px}.empty-card dl{margin:0;display:grid;gap:16px}.empty-card dt{font-size:15px;color:var(--blue);font-weight:850}.empty-card dd{margin:5px 0 0;min-height:54px;border-bottom:1px solid #dfe7f1;color:#9aa7b7;font-size:14px}.pending{display:inline-block;padding:5px 10px;border-radius:999px;background:#edf1f6;color:#7b899b;font-size:12px;font-weight:800}
+    .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}.principle{border:1px solid var(--line);border-top:5px solid var(--blue);padding:22px;background:#fff}.principle .num{font-size:14px;font-weight:900;color:var(--blue)}.principle h2{font-size:24px;color:var(--navy);margin:7px 0 10px}.principle .rule{font-size:17px;font-weight:800;line-height:1.45;color:var(--ink)}.principle ul{padding-left:20px;margin:14px 0 0;color:#52657e;font-size:15px;line-height:1.6}
+    .dont{margin-top:22px;padding:20px 24px;background:#fff4ef;border-left:6px solid #df6d4f}.dont h2{font-size:21px;color:#9d442f;margin:0 0 10px}.dont-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px 24px;font-size:15px;line-height:1.5;color:#6d4b42}
+    .direction-quote{margin:58px auto 24px;max-width:1260px;padding:46px 54px;background:#073c94;color:#fff;border-radius:22px;font-size:38px;line-height:1.45;font-weight:850;text-align:center}.direction-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1260px;margin:auto}.direction-meta div{padding:18px;background:#f4f8fd;border:1px solid var(--line)}.direction-meta b{display:block;color:var(--blue);font-size:14px;margin-bottom:7px}.direction-meta span{font-size:16px;line-height:1.45;color:var(--ink)}
+    .summary-grid{display:grid;grid-template-columns:1.05fr 1fr 1fr;gap:18px;margin-top:26px}.summary-card{padding:24px;border:1px solid var(--line);background:#fff;min-height:250px}.summary-card.highlight{background:#eaf3ff;border-color:#9fc2ef}.summary-card .n{color:var(--blue);font-weight:900;font-size:14px}.summary-card h2{font-size:24px;color:var(--navy);margin:8px 0 12px}.summary-card p,.summary-card li{font-size:16px;line-height:1.6;color:#455972}.summary-card ul{padding-left:20px;margin:0}
+    .architecture{margin-top:20px;display:grid;grid-template-columns:100px repeat(4,1fr) 240px;gap:10px;align-items:stretch}.arch-level{display:grid;place-items:center;background:#16365f;color:#fff;font-size:18px;font-weight:900;border-radius:10px}.arch-box{padding:18px;background:#f6f9fd;border:1px solid var(--line);border-radius:10px;min-height:108px}.arch-box h3{font-size:18px;color:var(--navy);margin:0 0 8px}.arch-box p{font-size:14px;line-height:1.5;color:#52657d;margin:0}.arch-wide{grid-column:2/6;background:#eaf3ff;border-color:#9fc2ef}.arch-half-left{grid-column:2/4;background:#eaf3ff;border-color:#9fc2ef}.arch-half-right{grid-column:4/6;background:#f1edff;border-color:#c5b8ef}.arch-side{grid-column:6;grid-row:1/5;background:#0f315e;color:#fff;border-radius:12px;padding:22px}.arch-side h2{font-size:20px;margin:0 0 18px}.arch-side h3{font-size:15px;color:#bcd8ff;margin:18px 0 7px}.arch-side p{font-size:14px;line-height:1.55;color:#fff;margin:0}.architecture-note{margin-top:14px;color:#7b899b;font-size:13px}
+    @media(max-width:1100px){.cover-slide,.section-lead{grid-template-columns:1fr}.cover-visual{height:420px}.contents,.empty-grid,.principles,.summary-grid,.direction-meta{grid-template-columns:1fr}.architecture{grid-template-columns:80px 1fr}.arch-wide,.arch-half-left,.arch-half-right,.arch-side{grid-column:auto;grid-row:auto}.arch-side{grid-column:1/3}.dont-grid,.evidence-row{grid-template-columns:1fr}}
+
+  </style>
+</head>
+<body>
+  <nav class="site-nav"><strong>作业工具产品概念</strong><span class="group">机会分析</span><a href="#user">用户</a><a href="#needs">需求</a><a href="#competition">竞争</a><a href="#opportunity">机会</a><a href="#teaching">教研</a><a href="#learning-science">学理</a><a href="#opportunity-summary">小结</a><span class="group">产品概念</span><a href="#philosophy">理念</a><a href="#direction">方向</a><a href="#architecture">架构</a></nav>
+  <main class="report">
+
+    <section id="cover" data-label="作业工具产品概念">
+      <div class="slide cover-slide">
+        <div class="cover-copy"><div class="kicker">PRODUCT CONCEPT · DIRECTION</div><h1>作业工具<br>产品概念</h1><p>基于5个家庭的用户访谈与真实作业观察，结合竞品分析，明确作业关键过程的产品理念、业务边界与业务框架。</p><span class="scope">核心需求：进入作业状态 · 卡住时继续自己做 · 写完后自己发现问题</span></div>
+        <div class="cover-visual"><img src="assets/homework-scene.jpg" alt="孩子在家中写作业的真实场景"></div>
+      </div>
+    </section>
+    <section id="contents" data-label="目录">
+      <div class="slide">
+        <div class="topline"><div class="chapter">CONTENTS</div><h1>目录</h1><div class="logo">步步高</div></div>
+        <div class="contents">
+          <article class="toc-card"><div class="n">01</div><h2>机会分析</h2><p>目标用户、三项核心需求、竞品满足情况、教研与学理结论。</p></article>
+          <article class="toc-card"><div class="n">02</div><h2>产品概念</h2><p>产品为什么做、创造什么价值、设计原则、明确边界，以及面向孩子的一句话产品方向。</p></article>
+          <article class="toc-card"><div class="n">03</div><h2>业务框架</h2><p>围绕进入作业状态、卡住后继续自己做、写完后自主发现问题和方法沉淀，组织核心系统与底层能力。</p></article>
+        </div>
+      </div>
+    </section>
+    <section id="user" data-label="目标用户画像" data-screen-label="目标用户画像">
+      <div class="slide">
+        <div class="topline">
+          <div class="chapter">01　机会分析</div>
+          <h1>用户洞察（看用户）｜目标用户画像</h1>
+          <div class="logo">步步高</div>
+        </div>
+        <p class="thesis">跨5个家庭的共同特征：孩子难以进入作业状态，卡住后难以继续自己做，写完后也难以自己发现问题，家长被迫承担催、讲、查。</p>
+        <div class="main-grid">
+          <div class="left-col">
+            <div class="quote">
+              <span><b>家长原话</b>“他心里有作业，但他没有能把作业安排妥当的能力。”</span>
+              <span><b>孩子原话</b>“先让我自己想一会儿，给点提示。”</span>
+            </div>
+            <img class="photo" src="assets/homework-scene.jpg" alt="五年级学生在家中的真实作业观察场景" />
+          </div>
+          <div class="right-col">
+            <div class="panel profile-grid">
+              <div>
+                <div class="profile-head"><h2>家长关键标签与教育观</h2><span class="role-note">家庭侧</span></div>
+                <div class="tags"><span class="tag">妈妈主陪</span><span class="tag">全程监督</span><span class="tag">辅导有限</span><span class="tag">焦虑务实</span><span class="tag">效果导向</span><span class="tag">担心娱乐</span></div>
+                <ul class="views"><li>作业必须完成，基础不能落下</li><li>关注结果，也在意孩子是否真正学会</li><li>希望孩子自主，现实中仍需持续介入</li></ul>
+              </div>
+              <div>
+                <div class="profile-head"><h2>孩子关键标签与学习观</h2><span class="role-note">学生侧</span></div>
+                <div class="tags"><span class="tag">3—5年级</span><span class="tag">启动困难</span><span class="tag">卡题停摆</span><span class="tag">写完不查</span><span class="tag">时间感弱</span><span class="tag">怕被批评</span></div>
+                <ul class="views"><li>先把今天的作业写完</li><li>主要靠家长催促和外部奖励推动</li><li>对检查、订正和复盘的价值感不强</li></ul>
+              </div>
+            </div>
+            <div class="panel two-col behavior">
+              <div><h2>典型的教育行为</h2><dl class="kv"><dt>教育偏好</dt><dd>即时见效，过程可见</dd><dt>行为特点</dt><dd>催开始、盯过程、讲题和批改</dd><dt>当前方法</dt><dd>搜题、AI、计时器、晚辅班</dd></dl></div>
+              <div><h2>典型的学习行为</h2><dl class="kv"><dt>学习偏好</dt><dd>分步提示、简短讲解、及时反馈</dd><dt>行为特点</dt><dd>拖延、卡住停、写完离开</dd><dt>当前方法</dt><dd>跳题、搜题、问家长，少草稿和检查</dd></dl></div>
+            </div>
+            <div class="panel two-col pain">
+              <div><h2>典型的教育痛点</h2><div class="pain-list"><div class="pain-item"><span class="idx">1</span><span>看得到结果，却看不出孩子卡在哪里</span></div><div class="pain-item"><span class="idx">2</span><span>家长不一定会讲，讲了孩子也未必听懂</span></div><div class="pain-item"><span class="idx">3</span><span>催、讲、查反复发生，时间和情绪双重消耗</span></div></div></div>
+              <div><h2>典型的学习痛点</h2><div class="pain-list"><div class="pain-item"><span class="idx">1</span><span>难开始：知道要写，却迟迟进入不了状态</span></div><div class="pain-item"><span class="idx">2</span><span>卡题停摆：不知道下一步，也怕被批评</span></div><div class="pain-item"><span class="idx">3</span><span>写完不查：错因留不下，问题反复出现</span></div></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="source-note">资料来源：5个家庭样本、信息记录表、用户洞察总结报告</div>
+      </div>
+    </section>
+
+    <section id="needs" data-label="作业全过程中的未满足需求" data-screen-label="核心场景未满足需求">
+      <div class="slide">
+        <div class="topline">
+          <div class="chapter">01　机会分析</div>
+          <h1>用户洞察（看用户）｜作业全过程中的未满足需求</h1>
+          <div class="logo">步步高</div>
+        </div>
+        <div class="quote-bar">
+          <span class="label">研讨原话</span>
+          <blockquote>“如果‘教育’和‘工具’只能选一个，我们还是聚焦到工具，去解决作业过程中的问题。”</blockquote>
+        </div>
+        <div class="journey-table" aria-label="五个家庭样本的作业全过程旅程">
+          <div class="corner">维度／阶段</div>
+          <div class="stage pre">📋 作业前<br>① 清楚作业内容</div>
+          <div class="stage pre">📋 作业前<br>② 作业准备阶段</div>
+          <div class="stage mid">⚡ 作业中<br>③ 开始写作业</div>
+          <div class="stage mid">⚡ 作业中<br>④ 解决作业问题</div>
+          <div class="stage post">🔗 作业后<br>⑤ 检查完成情况</div>
+          <div class="stage post">🔗 作业后<br>⑥ 错题订正讲解</div>
+
+          <div class="row-label">孩子行为</div>
+          <div>翻作业登记本、群消息或钉钉清点任务；出现漏记、漏做后由家长补充。</div>
+          <div>找书本文具、决定先写哪科；容易被玩具、零食、平板和整理动作带走。</div>
+          <div>需要家长到场或反复催促才动笔；开始后仍可能看时间、发呆或停下来。</div>
+          <div>先自己想，卡住后跳题、空题或找家长；部分孩子直接搜题，或停在原地等帮助。</div>
+          <div>写完就想离开，由家长核对是否漏项、抄错或算错；孩子很少主动回看。</div>
+          <div>家长指出错题后重新读题、讲解或抄写；孩子常不知道错因，也难把方法留下。</div>
+
+          <div class="row-label">原话／感受</div>
+          <div class="quote-cell">“我已经完成了。”<small>竹子｜实际三页只完成一至两页</small></div>
+          <div class="quote-cell">“还没玩够。”“不想写。”<small>思雨｜放学后更想先玩</small></div>
+          <div class="quote-cell">“妈妈你好好工作，我好好写作业。”<small>三年级男孩｜妈妈陪坐时</small></div>
+          <div class="quote-cell">“妈妈，给我讲一下呗——”<small>陈艺｜遇到不会的题时</small></div>
+          <div class="quote-cell">“写完了，那不用检查了。”<small>罗远朋｜完成作业后的反应</small></div>
+          <div class="quote-cell">“为什么我抄了还会错呢？”<small>罗远朋｜发现错别字时</small></div>
+
+          <div class="row-label">情绪</div>
+          <div class="emotion-cell">心虚／侥幸</div><div class="emotion-cell">抗拒／拖延</div><div class="emotion-cell">焦虑／分心</div><div class="emotion-cell">烦躁／无助</div><div class="emotion-cell">放松／不耐烦</div><div class="emotion-cell">委屈／挫败</div>
+
+          <div class="row-label">核心痛点</div>
+          <div class="pain-cell">作业来源和记录不统一，孩子记不全，家长也无法确认当天全量任务。</div>
+          <div class="pain-cell">知道要写却迟迟进不了状态；计时器只能提醒，不能让孩子真正开始。</div>
+          <div class="pain-cell">易被环境打断，休息后难回到下一项；家长一离场，节奏容易中断。</div>
+          <div class="pain-cell">不会判断自己卡在哪里；家长不一定会讲，搜题又容易先看到答案。</div>
+          <div class="pain-cell">完成感替代检查意识；会做的题也可能因漏项、抄写或状态问题出错。</div>
+          <div class="pain-cell">只改答案、不知错因；抄写加码和重复讲解容易引发亲子冲突。</div>
+
+          <div class="row-label">用户需求</div>
+          <div class="need-cell">清晰呈现当天作业并逐项核销，避免漏记、漏做。</div>
+          <div class="need-cell">把准备和第一步变简单，帮助孩子从玩耍平稳切换到作业。</div>
+          <div class="need-cell">让进度和剩余任务可见，并在分心或休息后轻量拉回。</div>
+          <div class="need-cell">先识别卡点，再给适度的分步提示，让孩子继续自己完成。</div>
+          <div class="need-cell">快速提示漏项和可疑点，引导孩子自己重新读、重新算和发现错误。</div>
+          <div class="need-cell">讲清错因和关键步骤，让孩子完成订正并留下可复用的方法。</div>
+        </div>
+        <div class="needs-title"><h2>核心需求描述</h2><span>从孩子视角描述作业过程中的真实需要</span></div>
+        <div class="needs">
+          <article class="need"><div class="n">需求1｜更容易进入作业状态</div><p>我希望有人帮我确认任务、安排顺序并把第一步变简单，从而不用等家长反复催促，也能开始完成作业。</p><div class="user-quote">原话证据：“还没玩够。”“不想写。”——思雨</div><div class="evidence">对应样本：启动拖延、漏记漏做、不会估时、休息后难返回</div></article>
+          <article class="need"><div class="n">需求2｜卡住时继续自己做</div><p>我希望先获得听得懂的提示和分步引导，从而能自己完成关键步骤，并知道同类题可以怎么做。</p><div class="user-quote">原话证据：“给提示。”“第一步要做什么，第二步要做什么。”——思雨</div><div class="evidence">对应样本：审题困难、畏难空题、求助断链、搜题先见答案</div></article>
+          <article class="need"><div class="n">需求3｜写完后自己发现问题</div><p>我希望工具快速指出需要再看的范围并给出检查方法，从而能自己发现、改正错误，并留下下次可用的方法。</p><div class="user-quote">原话证据：“写完了，那不用检查了。”“为什么我抄了还会错呢？”——罗远朋</div><div class="evidence">对应样本：写完不查、漏项抄错、错题只改答案、错因难沉淀</div></article>
+        </div>
+        <div class="source-note">资料来源：5个家庭访谈及作业观察；引号均为记录表中的孩子原话，需求为跨样本归纳</div>
+      </div>
+    </section>
+
+    <section id="competition" data-label="竞品分析" data-screen-label="三类核心需求的竞品满足情况">
+      <div class="slide">
+        <div class="topline">
+          <div class="chapter">01　机会分析</div>
+          <h1>竞品分析（看竞争）｜三类核心需求的满足情况</h1>
+          <div class="logo">步步高</div>
+        </div>
+        <p class="thesis">竞品已经提供计划、讲题和批改功能，但主要解决“功能有没有”；孩子能否更容易进入作业状态、卡住后继续自己做、写完后自己发现问题，仍未被完整解决。</p>
+        <div class="pain-strip"><strong>三个孩子需求</strong><span>更容易进入作业状态</span><span>卡住时继续自己做</span><span>写完后自己发现问题</span></div>
+
+        <h2 class="benchmark-section-title">三类核心需求的竞品满足情况</h2>
+        <div class="landscape">
+          <div class="lh">孩子核心需求</div><div class="lh">竞品主要方案</div><div class="lh">当前满足情况</div><div class="lh">仍未解决的问题</div>
+          <div class="cat">需求01<br>更容易进入作业状态</div><div><b>计划—清单—计时—提醒</b>作业计划、番茄钟、倒计时、家长远程提醒</div><div>能够展示任务和时间，并提醒孩子开始</div><div>仍依赖孩子主动打开和执行；较少同时解决任务确认、顺序安排和第一步门槛</div>
+          <div class="cat">需求02<br>卡住时继续自己做</div><div><b>搜题—视频—AI讲题—练习</b>识题、解析、动态板书、多轮问答和变式练习</div><div>功能最丰富，已经能够完整讲解一道题</div><div>仍以AI主讲为主，孩子被动听完；较少先诊断卡点、只提示当前一步，再由孩子继续完成</div>
+          <div class="cat">需求03<br>写完后自己发现问题</div><div><b>批改—错因—错题本—巩固</b>拍照批改、错题归档、知识点分析和针对练习</div><div>识别对错、定位错误和整理错题的能力较强</div><div>更擅长直接告诉孩子“哪里错了”，较少提供检查方法，引导孩子自己发现、订正并沉淀方法</div>
+        </div>
+
+        <h2 class="benchmark-section-title">重点需求02｜大模型讲题的三种方式</h2>
+        <p class="matrix-note">卡题是三类需求中功能最集中、竞争最充分的场景。以下基于同一道“银行存款年限题”，对豆包爱学、千问和元宝进行实测比较。</p>
+        <div class="ai-teacher-grid">
+          <article class="ai-teacher">
+            <div class="ai-teacher-head"><h3>豆包爱学</h3><p>解题执行型｜快速带着孩子完成当前题</p></div>
+            <div class="ai-teacher-body">
+              <div class="teach-flow"><span>标出条件</span><i>→</i><span>判断题型</span><i>→</i><span>给出公式</span><i>→</i><span>设未知数</span><i>→</i><span>列式计算</span><i>→</i><span>总结公式</span></div>
+              <div class="ai-block"><b>具体怎么讲</b><p>先标出本金、年利率和本息和，判断为“储蓄问题”；随后给出“利息＝本金×年利率×时间”“本息和＝本金＋利息”，再设未知数、列方程并算出答案。</p></div>
+              <div class="ai-block learn"><b>最值得学习</b><p>条件突出、步骤短、公式与计算同步出现，孩子不需要理解复杂操作，就能迅速跟上当前解题进度。</p></div>
+              <div class="ai-block limit"><b>当前不足</b><p>题型、公式和推导主要由AI直接给出；题后只总结公式，没有形成通用步骤、易错点和迁移验证。</p></div>
+              <div class="ai-teacher-key">可借鉴：保持“短步骤＋低操作门槛”，先帮助孩子快速回到作业。</div>
+            </div>
+          </article>
+          <article class="ai-teacher">
+            <div class="ai-teacher-head"><h3>千问</h3><p>概念理解型｜用多种表达讲清数量关系</p></div>
+            <div class="ai-teacher-body">
+              <div class="teach-flow"><span>解释概念</span><i>→</i><span>关系图示</span><i>→</i><span>先求利息</span><i>→</i><span>公式求年数</span><i>→</i><span>补充另一解法</span></div>
+              <div class="ai-block"><b>具体怎么讲</b><p>先解释本金、本息和、年利率，再用图表示“本息和＝本金＋利息”；之后先求总利息，再用公式求年数，并补充“先算一年利息，再求年数”的第二种方法。</p></div>
+              <div class="ai-block learn"><b>最值得学习</b><p>同一关系同时用概念、图示、公式和两种解法表达，适合“看到了数字，但不理解数字关系”的孩子。</p></div>
+              <div class="ai-block limit"><b>当前不足</b><p>主要帮助理解当前题，讲后没有提炼稳定的同类题步骤、易错点，也没有让孩子独立完成一道变式题。</p></div>
+              <div class="ai-teacher-key">可借鉴：卡住时切换图示、语言和不同算法，而不是重复同一种解释。</div>
+            </div>
+          </article>
+          <article class="ai-teacher">
+            <div class="ai-teacher-head"><h3>元宝</h3><p>方法迁移型｜讲一道题，沉淀一类题的方法</p></div>
+            <div class="ai-teacher-body">
+              <div class="teach-flow"><span>提取三要素</span><i>→</i><span>公式解释</span><i>→</i><span>生活类比</span><i>→</i><span>三步求解</span><i>→</i><span>方法卡</span><i>→</i><span>易错提醒</span></div>
+              <div class="ai-block"><b>具体怎么讲</b><p>先提取本金、年利率、本息和；公式抽象时用“利息像租钱的租金”解释，再按“总利息—每年利息—年数”完成计算。</p></div>
+              <div class="ai-block learn"><b>最值得学习</b><p>答案之后继续提炼“利息题三步法”，明确不能直接拿本息和去除的易错点，并通过概念记忆卡追问为什么这样算。</p></div>
+              <div class="ai-block limit"><b>当前不足</b><p>方法总结完整，但关键推理仍主要由AI完成；“没问题”只能确认主观感受，不能证明孩子会独立使用三步法。</p></div>
+              <div class="ai-teacher-key">最大亮点：把单题解法转化为“通用步骤＋易错点”，真正接近讲一道、会一类。</div>
+            </div>
+          </article>
+        </div>
+
+        <h2 class="benchmark-section-title">关键判断</h2>
+        <div class="insight-grid four">
+          <article class="insight-card"><span class="num">01</span><h3>提醒孩子开始，不等于帮助进入作业状态</h3><p>现有工具能展示计划和时间，却较少同时完成任务确认、顺序安排和第一步拆解。</p></article>
+          <article class="insight-card"><span class="num">02</span><h3>讲题功能丰富，孩子仍难继续自己做</h3><p>AI通常完整主讲整道题，孩子以听讲和确认参与，关键推理与作答没有交还给孩子。</p></article>
+          <article class="insight-card"><span class="num">03</span><h3>批改擅长判错，孩子仍难自己发现问题</h3><p>系统直接给出结果和错题，较少先提示可疑范围和检查方法，让孩子自己发现并订正。</p></article>
+          <article class="insight-card"><span class="num">04</span><h3>三项需求都缺少孩子主动完成的闭环</h3><p>提醒替孩子安排、讲题替孩子推理、批改替孩子检查，孩子难以积累“我能做到”的体验。</p></article>
+        </div>
+
+        <h2 class="benchmark-section-title">对步步高作业工具的启示</h2>
+        <div class="pain-strip"><strong>共同原则</strong><span>帮孩子进入状态</span><span>让孩子继续自己做</span><span>引导孩子自己发现</span></div>
+        <div class="opportunity-grid">
+          <article class="opp"><h3>1. 更容易进入作业状态</h3><p>帮助孩子确认今天的任务、安排顺序，把第一项拆成一个马上能完成的动作。</p><span class="boundary">成功标准：不等家长反复催促，孩子开始完成第一项。</span></article>
+          <article class="opp"><h3>2. 卡住时继续自己做</h3><p>读取题目和已有作答，先判断卡点，再从小提示开始，按需切换图示、类比和分步引导。</p><span class="boundary">成功标准：关键步骤由孩子完成，并知道同类题可以怎么做。</span></article>
+          <article class="opp"><h3>3. 写完后自己发现问题</h3><p>不直接展示全部错题和答案，先指出需要再看的范围和检查方法，引导孩子重新读、重新算和订正。</p><span class="boundary">成功标准：孩子自己发现、改正错误，并留下可复用的方法。</span></article>
+        </div>
+        <div class="source-links">判断依据：官方公开功能说明，以及千问、元宝、豆包爱学同题实测录屏；未完成逐题、逐版本效果测试。资料核对：<a href="https://edu.iflytek.com/about-us/news/company-news/2665">科大讯飞</a><a href="https://www.xessw.com/">学而思</a><a href="https://smart.zuoyebang.com/about">作业帮智能</a><a href="https://www.xiaoyuanyingjian.com/">小猿学习机</a><a href="https://leo.fbcontent.cn/">小猿AI App</a><a href="https://apps.apple.com/cn/app/id6469102455">豆包爱学</a><a href="https://apps.apple.com/cn/app/id6480446430">元宝</a><a href="https://www.qianwenai.com/agents/qwen">千问</a><a href="https://vt.quark.cn/blm/qk-souti-759/index">夸克学习</a></div>
+      </div>
+    </section>
+
+    <section id="opportunity" data-label="产品机会与边界">
+      <div class="slide">
+        <div class="topline"><div class="chapter">01　机会分析</div><h1>产品机会｜从完成作业走向自主完成</h1><div class="logo">步步高</div></div>
+        <p class="thesis">孩子在进入作业状态、卡住后继续自己做、写完后自己发现问题三个节点都容易失去掌控感。机会不是替孩子完成，而是在每个节点提供刚刚好的支持，让孩子一次次体验“我能做到”。</p>
+        <div class="section-lead">
+          <div class="hero-point"><div class="eyebrow">核心产品机会</div><h2>建立“进入状态—继续自己做—自己发现问题”的自主作业闭环</h2><p>作业前确认任务、安排顺序并降低第一步门槛；卡住时先判断障碍，只给当前需要的提示；写完后提示可疑范围和检查方法，让孩子自己发现、订正并留下方法。每一次帮助都以孩子完成关键动作为结果，并逐步减少外部介入。</p></div>
+          <div class="boundary-list">
+            <div class="boundary-item"><b>目标用户</b><span>小学中高年级、正在从家长陪写过渡到独立完成作业的孩子。</span></div>
+            <div class="boundary-item"><b>核心价值</b><span>让孩子在真实作业中获得胜任感，逐步建立计划、求助、检查和复盘能力。</span></div>
+            <div class="boundary-item"><b>业务边界</b><span>聚焦作业过程中的可解决问题，不替代学校教学，也不泛化解决亲子关系和学习内驱力。</span></div>
+          </div>
+        </div>
+        <div class="evidence-row">
+          <article class="evidence-card"><div class="label">用户证据</div><h3>孩子需要适度支持，关键动作仍想自己完成</h3><p>“给提示。”“第一步要做什么，第二步要做什么。”</p></article>
+          <article class="evidence-card"><div class="label">竞争空白</div><h3>功能齐全，三项需求仍未形成主动闭环</h3><p>提醒没有完整帮助进入状态，AI主讲替代推理，批改直接给出结果，关键动作没有真正交还给孩子。</p></article>
+          <article class="evidence-card"><div class="label">研讨结论</div><h3>工具解决作业过程问题</h3><p>“如果‘教育’和‘工具’只能选一个，我们还是聚焦到工具，去解决作业过程中的问题。”</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="teaching" data-label="教研分析">
+      <div class="slide">
+        <div class="topline"><div class="chapter">01　机会分析</div><h1>教研分析｜作业从巩固走向培养与诊断</h1><div class="logo">步步高</div></div>
+        <p class="thesis">新课标要求作业既完成知识巩固，也培养自主学习与时间管理能力。产品不能只提高完成效率，还要保留孩子计划、思考、检查和改正的过程。</p>
+        <div class="empty-grid">
+          <article class="empty-card"><h2>新课标：明确育人目标</h2><dl>
+            <div><dt>作业定位</dt><dd>从知识巩固、技能熟练，扩展到核心素养培养和学情诊断。</dd></div>
+            <div><dt>3—6年级要求</dt><dd>书面作业原则上每天不超过60分钟，难度不得超过课程标准。</dd></div>
+            <div><dt>过程要求</dt><dd>培养自主学习和时间管理能力；利用作业开展分析诊断、个别讲解和针对性反馈。</dd></div>
+          </dl></article>
+          <article class="empty-card"><h2>作业形态：书面为主，类型增多</h2><dl>
+            <div><dt>当前主体</dt><dd>传统书面作业仍是基础，主要来自教材配套练习、教辅成题和课堂任务。</dd></div>
+            <div><dt>变化方向</dt><dd>实践、探究、项目、跨学科，以及分层、弹性和个性化作业逐步增加。</dd></div>
+            <div><dt>资料缺口</dt><dd>当前研究未拆解具体学科、教材版本和单元题型，首发范围仍需专项教研。</dd></div>
+          </dl></article>
+          <article class="empty-card"><h2>评价变化：关注过程证据</h2><dl>
+            <div><dt>评价方式</dt><dd>从单一分数判断，走向等级评价、过程性评价和表现性评价。</dd></div>
+            <div><dt>家长角色</dt><dd>政策不要求家长代批作业，家庭更需要获得清晰、可信的过程反馈。</dd></div>
+            <div><dt>资料缺口</dt><dd>当前材料未提供具体考试题型和命题趋势，相关结论暂不展开。</dd></div>
+          </dl></article>
+        </div>
+        <div class="dont"><h2>对作业工具的要求</h2><div class="dont-grid"><span>帮助确认任务与安排顺序</span><span>先让孩子尝试，再提供帮助</span><span>帮助服务于继续自己作答</span><span>检查服务于自己发现和订正</span><span>题后沉淀可复用方法</span><span>不额外增加作业负担</span></div></div>
+        <p class="architecture-note">资料来源：《0916_小学3-6年级作业概念研究（无图版）》中的政策演变、新课标作业研究和作业管理闭环。</p>
+      </div>
+    </section>
+
+    <section id="learning-science" data-label="学习科学分析">
+      <div class="slide">
+        <div class="topline"><div class="chapter">01　机会分析</div><h1>学理分析｜胜任感是走向自主学习的起点</h1><div class="logo">步步高</div></div>
+        <p class="thesis">孩子只有反复体验“我能进入状态、我能继续自己做、我能自己发现并改正问题”，才会逐步形成对作业的掌控感。产品要通过适度脚手架恢复胜任感，再逐步退出帮助。</p>
+        <div class="empty-grid">
+          <article class="empty-card"><h2>学生认知：很难准确说出卡点</h2><dl>
+            <div><dt>典型表现</dt><dd>反复读题仍不理解、长时间不下笔、叹气烦躁，或直接空题和放弃求助。</dd></div>
+            <div><dt>认知限制</dt><dd>小学中高年级的执行控制、时间估计和抗干扰能力仍在发展，卡住后更难组织语言说明原因。</dd></div>
+            <div><dt>产品含义</dt><dd>减少抽象提问，通过题目、已有作答和简单选择帮助孩子表达“卡在哪里”。</dd></div>
+          </dl></article>
+          <article class="empty-card"><h2>胜任感：把困难降回可达范围</h2><dl>
+            <div><dt>最近发展区</dt><dd>任务超过当前能力时，产品需要搭脚手架，将难题拆成孩子能够完成的小步骤。</dd></div>
+            <div><dt>胜任感</dt><dd>反复失败容易形成“努力也没用”的预期；一次可感知的独立完成有助于恢复继续尝试的意愿。</dd></div>
+            <div><dt>自主感</dt><dd>允许孩子选择先想一会儿、要一个提示或换一种讲法，减少被控制感。</dd></div>
+          </dl></article>
+          <article class="empty-card"><h2>成长路径：支持逐步退出</h2><dl>
+            <div><dt>第一次</dt><dd>识别困难并搭好脚手架，让孩子完成当前能够做到的下一步。</dd></div>
+            <div><dt>下一次</dt><dd>复用方法卡和已有经验，减少提示，让孩子承担更多判断和作答。</dd></div>
+            <div><dt>最终状态</dt><dd>孩子能够自己进入作业状态，卡住时主动求助并继续完成，写完后自主检查订正，工具只在必要时出现。</dd></div>
+          </dl></article>
+        </div>
+        <div class="evidence-row">
+          <article class="evidence-card"><div class="label">进入状态</div><h3>我知道今天做什么，也能迈出第一步</h3><p>确认任务、安排顺序并拆小第一步，把进入状态变成一次可完成的小成功。</p></article>
+          <article class="evidence-card"><div class="label">继续自己做</div><h3>我卡住后还能继续完成</h3><p>提示只补当前缺口，关键推理和作答仍由孩子完成。</p></article>
+          <article class="evidence-card"><div class="label">自己发现问题</div><h3>我能自己检查、发现并改正</h3><p>先提示可疑范围和检查方法，把错误变成可理解、可修正的反馈。</p></article>
+        </div>
+        <p class="architecture-note">资料来源：《0916_小学3-6年级作业概念研究（无图版）》学生作业痛点研究与教研设计理念。文档引用的心理学解释仍需由专业团队继续核验适用范围。</p>
+      </div>
+    </section>
+
+    <section id="opportunity-summary" data-label="机会小结">
+      <div class="slide">
+        <div class="topline"><div class="chapter">01　机会分析</div><h1>机会小结｜业务方向</h1><div class="logo">步步高</div></div>
+        <p class="thesis">用户研究发现孩子在进入作业状态、卡住后继续自己做、写完后自己发现问题三个节点反复依赖外部介入；竞品功能丰富，却仍替孩子完成关键动作。业务机会是用适度支持帮助孩子获得胜任感，并逐步把作业主动权交还给孩子。</p>
+        <div class="summary-grid">
+          <article class="summary-card"><div class="n">01 用户问题</div><h2>三项核心需求仍依赖别人</h2><ul><li>进入状态依赖家长确认任务、安排顺序和催促。</li><li>卡住后等待别人讲或直接搜答案，难以继续自己做。</li><li>写完后等系统或家长判对错，难以自己发现问题。</li><li>反复被接管，难以积累“我能做到”的体验。</li></ul></article>
+          <article class="summary-card"><div class="n">02 竞争判断</div><h2>功能齐全，但孩子参与不足</h2><ul><li>计划工具提醒开始，却没有完整帮助孩子进入状态。</li><li>AI讲题仍由AI主讲，孩子难以继续自己做。</li><li>批改工具善于判错，较少引导孩子自己发现和订正。</li><li>三项需求都缺少孩子主动完成的闭环。</li></ul></article>
+          <article class="summary-card highlight"><div class="n">03 业务方向</div><h2>自主作业成长工具</h2><p>围绕更容易进入作业状态、卡住时继续自己做、写完后自己发现问题提供适度支持，让孩子完成关键动作、获得胜任感，并随着能力增长逐步减少帮助。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="philosophy" data-label="产品理念">
+      <div class="slide">
+        <div class="topline"><div class="chapter">02　产品概念</div><h1>产品理念｜为什么做</h1><div class="logo">步步高</div></div>
+        <div class="hero-point" style="margin-top:20px"><div class="eyebrow">核心理念</div><h2>让孩子在作业中获得胜任感，逐步实现自主学习。</h2><p>作业不仅是需要完成的任务，也是孩子练习进入状态、解决问题和检查改正的真实场景。产品围绕三项核心需求提供适度支持，让孩子一次次体验“我能做到”，再随着能力提升逐步退出。</p></div>
+        <div class="principles">
+          <article class="principle"><div class="num">理念原则 01</div><h2>每一步都够得着</h2><div class="rule">把困难降到孩子努力后能够完成的范围，先建立“我能做到”的体验。</div><ul><li>进入状态时确认任务、安排顺序、拆小第一步</li><li>卡住时只补当前缺口，让孩子继续自己做</li><li>写完后先缩小问题范围，引导孩子自己发现</li></ul></article>
+          <article class="principle"><div class="num">理念原则 02</div><h2>关键动作由孩子完成</h2><div class="rule">工具提供脚手架，不替孩子计划、推理、作答和检查。</div><ul><li>先让孩子尝试和表达</li><li>提示后由孩子继续写</li><li>用真实作答确认是否会做</li></ul></article>
+          <article class="principle"><div class="num">理念原则 03</div><h2>帮助随着成长逐步退出</h2><div class="rule">每次作业沉淀方法和经验，下一次减少提示，最终让孩子自己完成。</div><ul><li>把单题解法沉淀为方法</li><li>记录能够独立完成的证据</li><li>能力提升后减少外部介入</li></ul></article>
+        </div>
+        <div class="dont"><h2>明确不做什么</h2><div class="dont-grid"><span>不直接替孩子安排全部任务</span><span>不做答案优先的搜题工具</span><span>不由AI完整主讲整道题</span><span>不替孩子完成检查和改正</span><span>不把作业变成额外课程</span><span>不用游戏化奖励替代胜任感</span></div></div>
+      </div>
+    </section>
+
+    <section id="direction" data-label="产品方向">
+      <div class="slide">
+        <div class="topline"><div class="chapter">02　产品概念</div><h1>产品方向｜孩子视角的一句话</h1><div class="logo">步步高</div></div>
+        <div class="direction-quote">“让我更容易进入作业状态，卡住时还能继续自己做，写完后能自己发现并改正问题；每次作业，都比上一次更能靠自己完成。”</div>
+        <div class="direction-meta">
+          <div><b>目标用户</b><span>小学中高年级、开始独立写作业的孩子</span></div>
+          <div><b>核心场景</b><span>家庭作业中的进入状态、卡住后继续完成、写完后检查订正三个关键节点</span></div>
+          <div><b>核心方式</b><span>降低门槛、适度引导、主动完成、方法沉淀、帮助退出</span></div>
+          <div><b>核心价值</b><span>在真实作业中积累胜任感，逐步形成自主学习能力</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture" data-label="产品架构">
+      <div class="slide">
+        <div class="topline"><div class="chapter">03　业务框架</div><h1>作业工具业务框架</h1><div class="logo">步步高</div></div>
+        <p class="thesis">围绕“让孩子在作业中获得胜任感，逐步实现自主学习”，建立从核心产品、业务单元到核心系统和底层能力的四层框架。</p>
+        <div class="architecture">
+          <div class="arch-level">L1<br>核心产品</div><div class="arch-box arch-half-left"><h3>孩子端｜自主作业成长助手</h3><p>帮助孩子更容易进入作业状态、卡住时继续自己做、写完后自己发现问题，在真实作业中持续积累“我能做到”的体验。</p></div><div class="arch-box arch-half-right"><h3>家长端｜作业过程反馈助手</h3><p>只呈现任务进度、求助情况和独立完成变化，让家长在必要时介入，不继续承担全程催、讲、查。</p></div>
+          <aside class="arch-side"><h2>业务内核</h2><h3>产品理念</h3><p>让孩子在作业中获得胜任感，逐步实现自主学习。</p><h3>框架原则</h3><p>工具提供脚手架，关键动作由孩子完成；能力增长后，帮助逐步退出。</p><h3>演进方向</h3><p>先解决进入作业状态、卡住后继续自己做、写完后自己发现问题三项核心需求，再连接方法沉淀与长期成长证据。</p></aside>
+          <div class="arch-level">L2<br>业务单元</div><div class="arch-box"><h3>作业状态进入</h3><p>确认任务、安排顺序、拆小第一步，帮助孩子开始完成第一项。</p></div><div class="arch-box"><h3>卡点诊断与分步引导</h3><p>识别卡点、给出适度提示，由孩子完成关键步骤并继续作答。</p></div><div class="arch-box"><h3>自主检查与订正</h3><p>提示可疑范围和检查方法，引导孩子自己发现、改正并说明原因。</p></div><div class="arch-box"><h3>方法沉淀</h3><p>总结同类题步骤、易错点和已掌握方法，为下次减少帮助。</p></div>
+          <div class="arch-level">L3<br>核心系统</div><div class="arch-box"><h3>作业任务与进度系统</h3><p>任务识别与核销、顺序建议、第一步拆解、阶段进度和休息后拉回。</p></div><div class="arch-box"><h3>卡点诊断与引导系统</h3><p>读取题目和已有作答，判断障碍，生成分级提示和多种讲法。</p></div><div class="arch-box"><h3>检查与订正验证系统</h3><p>识别漏项和可疑点，提供检查方法，验证自主订正与微型迁移。</p></div><div class="arch-box"><h3>成长记录系统</h3><p>记录进入状态、独立作答、主动检查和方法掌握，控制帮助逐步退出。</p></div>
+          <div class="arch-level">L4<br>核心能力</div><div class="arch-box"><h3>孩子与作业画像</h3><p>年级、学科、能力基础、使用偏好和可接受帮助方式。</p></div><div class="arch-box"><h3>多模态作业理解</h3><p>任务、题目、手写过程、停顿、修改和语音意图识别。</p></div><div class="arch-box"><h3>学科与教学策略引擎</h3><p>解题校验、卡点分类、脚手架生成、方法提炼与迁移验证。</p></div><div class="arch-box"><h3>可信与安全机制</h3><p>答案核验、教材适配、内容边界、隐私保护和家长可见反馈。</p></div>
+        </div>
+        <p class="architecture-note">待验证：首发优先节点、学科与年级范围、不同能力孩子的提示退出规则、准确率门槛、端云分工和版本节奏。</p>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
+
