@@ -140,19 +140,25 @@
       .arch-level{font-size:20px}.arch-box h3{font-size:20px}.arch-box p{font-size:16px}.arch-side h2{font-size:23px}.arch-side h3{font-size:17px}.arch-side p{font-size:16px}.architecture-note{font-size:15px}
     }
 
-  </style>
+  
+.executive-hidden{display:none!important}
+.dont-grid.concise{grid-template-columns:repeat(3,1fr)}
+#needs .slide,#competition .slide,#opportunity .slide,#philosophy .slide,#architecture .slide{min-height:720px}
+#needs .needs{margin-top:34px}
+#competition .insight-grid{margin-top:28px}
+</style>
 </head>
 <body>
-  <nav class="site-nav"><strong>作业工具产品概念</strong><span class="group">机会分析</span><a href="#user">用户</a><a href="#needs">需求</a><a href="#competition">竞争</a><a href="#opportunity">机会</a><a href="#teaching">教研</a><a href="#learning-science">学理</a><a href="#opportunity-summary">小结</a><span class="group">产品概念</span><a href="#philosophy">理念</a><a href="#direction">方向</a><a href="#architecture">架构</a></nav>
+  <nav class="site-nav"><strong>作业工具产品概念</strong><a href="#needs">用户洞察</a><a href="#competition">竞争判断</a><a href="#opportunity">产品机会</a><a href="#philosophy">产品理念</a><a href="#architecture">业务框架</a></nav>
   <main class="report">
 
     <section id="cover" data-label="作业工具产品概念">
       <div class="slide cover-slide">
-        <div class="cover-copy"><div class="kicker">PRODUCT CONCEPT · DIRECTION</div><h1>作业工具<br>产品概念</h1><p>基于5个家庭的用户访谈与真实作业观察，结合竞品分析，明确作业关键过程的产品理念、业务边界与业务框架。</p><span class="scope">核心需求：进入作业状态 · 卡住时继续自己做 · 写完后自己发现问题</span></div>
+        <div class="cover-copy"><div class="kicker">PRODUCT CONCEPT · DIRECTION</div><h1>作业工具<br>产品概念</h1><p>基于5个家庭的访谈与作业观察，聚焦孩子在作业过程中最需要解决的三个问题，明确产品机会、理念与业务框架。</p><span class="scope">核心需求：进入作业状态 · 卡住时继续自己做 · 写完后自己发现问题</span></div>
         <div class="cover-visual"><img src="assets/homework-scene.jpg" alt="孩子在家中写作业的真实场景"></div>
       </div>
     </section>
-    <section id="contents" data-label="目录">
+    <section class="executive-hidden" id="contents" data-label="目录">
       <div class="slide">
         <div class="topline"><div class="chapter">CONTENTS</div><h1>目录</h1><div class="logo">步步高</div></div>
         <div class="contents">
@@ -162,7 +168,7 @@
         </div>
       </div>
     </section>
-    <section id="user" data-label="目标用户画像" data-screen-label="目标用户画像">
+    <section class="executive-hidden" id="user" data-label="目标用户画像" data-screen-label="目标用户画像">
       <div class="slide">
         <div class="topline">
           <div class="chapter">01　机会分析</div>
@@ -209,14 +215,14 @@
       <div class="slide">
         <div class="topline">
           <div class="chapter">01　机会分析</div>
-          <h1>用户洞察（看用户）｜作业全过程中的未满足需求</h1>
+          <h1>用户洞察｜三个关键问题</h1>
           <div class="logo">步步高</div>
         </div>
-        <div class="quote-bar">
+        <div class="quote-bar executive-hidden">
           <span class="label">研讨原话</span>
           <blockquote>“如果‘教育’和‘工具’只能选一个，我们还是聚焦到工具，去解决作业过程中的问题。”</blockquote>
         </div>
-        <div class="journey-table" aria-label="五个家庭样本的作业全过程旅程">
+        <div class="journey-table executive-hidden" aria-label="五个家庭样本的作业全过程旅程">
           <div class="corner">维度／阶段</div>
           <div class="stage pre">📋 作业前<br>① 清楚作业内容</div>
           <div class="stage pre">📋 作业前<br>② 作业准备阶段</div>
@@ -260,11 +266,11 @@
           <div class="need-cell">快速提示漏项和可疑点，引导孩子自己重新读、重新算和发现错误。</div>
           <div class="need-cell">讲清错因和关键步骤，让孩子完成订正并留下可复用的方法。</div>
         </div>
-        <div class="needs-title"><h2>核心需求描述</h2><span>从孩子视角描述作业过程中的真实需要</span></div>
+        <div class="needs-title"><h2>孩子在三个关键节点失去掌控感</h2><span>原话来自5个家庭访谈与作业观察</span></div>
         <div class="needs">
-          <article class="need"><div class="n">需求1｜更容易进入作业状态</div><p>我希望有人帮我确认任务、安排顺序并把第一步变简单，从而不用等家长反复催促，也能开始完成作业。</p><div class="user-quote">原话证据：“还没玩够。”“不想写。”——思雨</div><div class="evidence">对应样本：启动拖延、漏记漏做、不会估时、休息后难返回</div></article>
-          <article class="need"><div class="n">需求2｜卡住时继续自己做</div><p>我希望先获得听得懂的提示和分步引导，从而能自己完成关键步骤，并知道同类题可以怎么做。</p><div class="user-quote">原话证据：“给提示。”“第一步要做什么，第二步要做什么。”——思雨</div><div class="evidence">对应样本：审题困难、畏难空题、求助断链、搜题先见答案</div></article>
-          <article class="need"><div class="n">需求3｜写完后自己发现问题</div><p>我希望工具快速指出需要再看的范围并给出检查方法，从而能自己发现、改正错误，并留下下次可用的方法。</p><div class="user-quote">原话证据：“写完了，那不用检查了。”“为什么我抄了还会错呢？”——罗远朋</div><div class="evidence">对应样本：写完不查、漏项抄错、错题只改答案、错因难沉淀</div></article>
+          <article class="need"><div class="n">01｜进入状态依赖催促</div><p>我希望有人帮我确认任务、安排顺序并把第一步变简单，从而不用等家长反复催促，也能开始完成作业。</p><div class="user-quote">原话证据：“还没玩够。”“不想写。”——思雨</div><div class="evidence">对应样本：启动拖延、漏记漏做、不会估时、休息后难返回</div></article>
+          <article class="need"><div class="n">02｜卡住后不知道下一步</div><p>我希望先获得听得懂的提示和分步引导，从而能自己完成关键步骤，并知道同类题可以怎么做。</p><div class="user-quote">原话证据：“给提示。”“第一步要做什么，第二步要做什么。”——思雨</div><div class="evidence">对应样本：审题困难、畏难空题、求助断链、搜题先见答案</div></article>
+          <article class="need"><div class="n">03｜写完后缺少主动检查</div><p>我希望工具快速指出需要再看的范围并给出检查方法，从而能自己发现、改正错误，并留下下次可用的方法。</p><div class="user-quote">原话证据：“写完了，那不用检查了。”“为什么我抄了还会错呢？”——罗远朋</div><div class="evidence">对应样本：写完不查、漏项抄错、错题只改答案、错因难沉淀</div></article>
         </div>
         <div class="source-note">资料来源：5个家庭访谈及作业观察；引号均为记录表中的孩子原话，需求为跨样本归纳</div>
       </div>
@@ -274,23 +280,23 @@
       <div class="slide">
         <div class="topline">
           <div class="chapter">01　机会分析</div>
-          <h1>竞品分析（看竞争）｜三类核心需求的满足情况</h1>
+          <h1>竞争判断｜功能丰富，但关键动作仍由工具完成</h1>
           <div class="logo">步步高</div>
         </div>
-        <p class="thesis">竞品已经提供计划、讲题和批改功能，但主要解决“功能有没有”；孩子能否更容易进入作业状态、卡住后继续自己做、写完后自己发现问题，仍未被完整解决。</p>
-        <div class="pain-strip"><strong>三个孩子需求</strong><span>更容易进入作业状态</span><span>卡住时继续自己做</span><span>写完后自己发现问题</span></div>
+        <p class="thesis">竞品已经覆盖计划、讲题和批改，但普遍由工具安排、主讲和判错，孩子仍是被动参与者。</p>
+        <div class="pain-strip executive-hidden"><strong>三个孩子需求</strong><span>更容易进入作业状态</span><span>卡住时继续自己做</span><span>写完后自己发现问题</span></div>
 
-        <h2 class="benchmark-section-title">三类核心需求的竞品满足情况</h2>
-        <div class="landscape">
+        <h2 class="benchmark-section-title executive-hidden">三类核心需求的竞品满足情况</h2>
+        <div class="landscape executive-hidden">
           <div class="lh">孩子核心需求</div><div class="lh">竞品主要方案</div><div class="lh">当前满足情况</div><div class="lh">仍未解决的问题</div>
           <div class="cat">需求01<br>更容易进入作业状态</div><div><b>计划—清单—计时—提醒</b>作业计划、番茄钟、倒计时、家长远程提醒</div><div>能够展示任务和时间，并提醒孩子开始</div><div>仍依赖孩子主动打开和执行；较少同时解决任务确认、顺序安排和第一步门槛</div>
           <div class="cat">需求02<br>卡住时继续自己做</div><div><b>搜题—视频—AI讲题—练习</b>识题、解析、动态板书、多轮问答和变式练习</div><div>功能最丰富，已经能够完整讲解一道题</div><div>仍以AI主讲为主，孩子被动听完；较少先诊断卡点、只提示当前一步，再由孩子继续完成</div>
           <div class="cat">需求03<br>写完后自己发现问题</div><div><b>批改—错因—错题本—巩固</b>拍照批改、错题归档、知识点分析和针对练习</div><div>识别对错、定位错误和整理错题的能力较强</div><div>更擅长直接告诉孩子“哪里错了”，较少提供检查方法，引导孩子自己发现、订正并沉淀方法</div>
         </div>
 
-        <h2 class="benchmark-section-title">重点需求02｜大模型讲题的三种方式</h2>
-        <p class="matrix-note">卡题是三类需求中功能最集中、竞争最充分的场景。以下基于同一道“银行存款年限题”，对豆包爱学、千问和元宝进行实测比较。</p>
-        <div class="ai-teacher-grid">
+        <h2 class="benchmark-section-title executive-hidden">重点需求02｜大模型讲题的三种方式</h2>
+        <p class="matrix-note executive-hidden">卡题是三类需求中功能最集中、竞争最充分的场景。以下基于同一道“银行存款年限题”，对豆包爱学、千问和元宝进行实测比较。</p>
+        <div class="ai-teacher-grid executive-hidden">
           <article class="ai-teacher">
             <div class="ai-teacher-head"><h3>豆包爱学</h3><p>解题执行型｜快速带着孩子完成当前题</p></div>
             <div class="ai-teacher-body">
@@ -323,22 +329,22 @@
           </article>
         </div>
 
-        <h2 class="benchmark-section-title">关键判断</h2>
-        <div class="insight-grid four">
+        <h2 class="benchmark-section-title">三个共性缺口</h2>
+        <div class="insight-grid">
           <article class="insight-card"><span class="num">01</span><h3>提醒孩子开始，不等于帮助进入作业状态</h3><p>现有工具能展示计划和时间，却较少同时完成任务确认、顺序安排和第一步拆解。</p></article>
           <article class="insight-card"><span class="num">02</span><h3>讲题功能丰富，孩子仍难继续自己做</h3><p>AI通常完整主讲整道题，孩子以听讲和确认参与，关键推理与作答没有交还给孩子。</p></article>
           <article class="insight-card"><span class="num">03</span><h3>批改擅长判错，孩子仍难自己发现问题</h3><p>系统直接给出结果和错题，较少先提示可疑范围和检查方法，让孩子自己发现并订正。</p></article>
-          <article class="insight-card"><span class="num">04</span><h3>三项需求都缺少孩子主动完成的闭环</h3><p>提醒替孩子安排、讲题替孩子推理、批改替孩子检查，孩子难以积累“我能做到”的体验。</p></article>
+          
         </div>
 
-        <h2 class="benchmark-section-title">对步步高作业工具的启示</h2>
-        <div class="pain-strip"><strong>共同原则</strong><span>帮孩子进入状态</span><span>让孩子继续自己做</span><span>引导孩子自己发现</span></div>
-        <div class="opportunity-grid">
+        <h2 class="benchmark-section-title executive-hidden">对步步高作业工具的启示</h2>
+        <div class="pain-strip executive-hidden"><strong>共同原则</strong><span>帮孩子进入状态</span><span>让孩子继续自己做</span><span>引导孩子自己发现</span></div>
+        <div class="opportunity-grid executive-hidden">
           <article class="opp"><h3>1. 更容易进入作业状态</h3><p>帮助孩子确认今天的任务、安排顺序，把第一项拆成一个马上能完成的动作。</p><span class="boundary">成功标准：不等家长反复催促，孩子开始完成第一项。</span></article>
           <article class="opp"><h3>2. 卡住时继续自己做</h3><p>读取题目和已有作答，先判断卡点，再从小提示开始，按需切换图示、类比和分步引导。</p><span class="boundary">成功标准：关键步骤由孩子完成，并知道同类题可以怎么做。</span></article>
           <article class="opp"><h3>3. 写完后自己发现问题</h3><p>不直接展示全部错题和答案，先指出需要再看的范围和检查方法，引导孩子重新读、重新算和订正。</p><span class="boundary">成功标准：孩子自己发现、改正错误，并留下可复用的方法。</span></article>
         </div>
-        <div class="source-links">判断依据：官方公开功能说明，以及千问、元宝、豆包爱学同题实测录屏；未完成逐题、逐版本效果测试。资料核对：<a href="https://edu.iflytek.com/about-us/news/company-news/2665">科大讯飞</a><a href="https://www.xessw.com/">学而思</a><a href="https://smart.zuoyebang.com/about">作业帮智能</a><a href="https://www.xiaoyuanyingjian.com/">小猿学习机</a><a href="https://leo.fbcontent.cn/">小猿AI App</a><a href="https://apps.apple.com/cn/app/id6469102455">豆包爱学</a><a href="https://apps.apple.com/cn/app/id6480446430">元宝</a><a href="https://www.qianwenai.com/agents/qwen">千问</a><a href="https://vt.quark.cn/blm/qk-souti-759/index">夸克学习</a></div>
+        <div class="source-links executive-hidden">判断依据：官方公开功能说明，以及千问、元宝、豆包爱学同题实测录屏；未完成逐题、逐版本效果测试。资料核对：<a href="https://edu.iflytek.com/about-us/news/company-news/2665">科大讯飞</a><a href="https://www.xessw.com/">学而思</a><a href="https://smart.zuoyebang.com/about">作业帮智能</a><a href="https://www.xiaoyuanyingjian.com/">小猿学习机</a><a href="https://leo.fbcontent.cn/">小猿AI App</a><a href="https://apps.apple.com/cn/app/id6469102455">豆包爱学</a><a href="https://apps.apple.com/cn/app/id6480446430">元宝</a><a href="https://www.qianwenai.com/agents/qwen">千问</a><a href="https://vt.quark.cn/blm/qk-souti-759/index">夸克学习</a></div>
       </div>
     </section>
 
@@ -347,7 +353,7 @@
         <div class="topline"><div class="chapter">01　机会分析</div><h1>产品机会｜从完成作业走向自主完成</h1><div class="logo">步步高</div></div>
         <p class="thesis">孩子在进入作业状态、卡住后继续自己做、写完后自己发现问题三个节点都容易失去掌控感。机会不是替孩子完成，而是在每个节点提供刚刚好的支持，让孩子一次次体验“我能做到”。</p>
         <div class="section-lead">
-          <div class="hero-point"><div class="eyebrow">核心产品机会</div><h2>建立“进入状态—继续自己做—自己发现问题”的自主作业闭环</h2><p>作业前确认任务、安排顺序并降低第一步门槛；卡住时先判断障碍，只给当前需要的提示；写完后提示可疑范围和检查方法，让孩子自己发现、订正并留下方法。每一次帮助都以孩子完成关键动作为结果，并逐步减少外部介入。</p></div>
+          <div class="hero-point"><div class="eyebrow">核心产品机会</div><h2>把作业关键动作交还给孩子</h2><p>进入状态时降低第一步门槛，卡住时只补当前缺口，写完后引导孩子自己发现问题。工具提供适度支持，关键动作由孩子完成。</p></div>
           <div class="boundary-list">
             <div class="boundary-item"><b>目标用户</b><span>小学中高年级、正在从家长陪写过渡到独立完成作业的孩子。</span></div>
             <div class="boundary-item"><b>核心价值</b><span>让孩子在真实作业中获得胜任感，逐步建立计划、求助、检查和复盘能力。</span></div>
@@ -362,7 +368,7 @@
       </div>
     </section>
 
-    <section id="teaching" data-label="教研分析">
+    <section class="executive-hidden" id="teaching" data-label="教研分析">
       <div class="slide">
         <div class="topline"><div class="chapter">01　机会分析</div><h1>教研分析｜作业从巩固走向培养与诊断</h1><div class="logo">步步高</div></div>
         <p class="thesis">新课标要求作业既完成知识巩固，也培养自主学习与时间管理能力。产品不能只提高完成效率，还要保留孩子计划、思考、检查和改正的过程。</p>
@@ -388,7 +394,7 @@
       </div>
     </section>
 
-    <section id="learning-science" data-label="学习科学分析">
+    <section class="executive-hidden" id="learning-science" data-label="学习科学分析">
       <div class="slide">
         <div class="topline"><div class="chapter">01　机会分析</div><h1>学理分析｜胜任感是走向自主学习的起点</h1><div class="logo">步步高</div></div>
         <p class="thesis">孩子只有反复体验“我能进入状态、我能继续自己做、我能自己发现并改正问题”，才会逐步形成对作业的掌控感。产品要通过适度脚手架恢复胜任感，再逐步退出帮助。</p>
@@ -418,7 +424,7 @@
       </div>
     </section>
 
-    <section id="opportunity-summary" data-label="机会小结">
+    <section class="executive-hidden" id="opportunity-summary" data-label="机会小结">
       <div class="slide">
         <div class="topline"><div class="chapter">01　机会分析</div><h1>机会小结｜业务方向</h1><div class="logo">步步高</div></div>
         <p class="thesis">用户研究发现孩子在进入作业状态、卡住后继续自己做、写完后自己发现问题三个节点反复依赖外部介入；竞品功能丰富，却仍替孩子完成关键动作。业务机会是用适度支持帮助孩子获得胜任感，并逐步把作业主动权交还给孩子。</p>
@@ -439,11 +445,11 @@
           <article class="principle"><div class="num">理念原则 02</div><h2>关键动作由孩子完成</h2><div class="rule">工具提供脚手架，不替孩子计划、推理、作答和检查。</div><ul><li>先让孩子尝试和表达</li><li>提示后由孩子继续写</li><li>用真实作答确认是否会做</li></ul></article>
           <article class="principle"><div class="num">理念原则 03</div><h2>帮助随着成长逐步退出</h2><div class="rule">每次作业沉淀方法和经验，下一次减少提示，最终让孩子自己完成。</div><ul><li>把单题解法沉淀为方法</li><li>记录能够独立完成的证据</li><li>能力提升后减少外部介入</li></ul></article>
         </div>
-        <div class="dont"><h2>明确不做什么</h2><div class="dont-grid"><span>不直接替孩子安排全部任务</span><span>不做答案优先的搜题工具</span><span>不由AI完整主讲整道题</span><span>不替孩子完成检查和改正</span><span>不把作业变成额外课程</span><span>不用游戏化奖励替代胜任感</span></div></div>
+        <div class="dont"><h2>业务边界</h2><div class="dont-grid concise"><span>不做答案优先的搜题工具</span><span>不由AI完整主讲整道题</span><span>不替孩子完成检查和改正</span></div></div>
       </div>
     </section>
 
-    <section id="direction" data-label="产品方向">
+    <section class="executive-hidden" id="direction" data-label="产品方向">
       <div class="slide">
         <div class="topline"><div class="chapter">02　产品概念</div><h1>产品方向｜孩子视角的一句话</h1><div class="logo">步步高</div></div>
         <div class="direction-quote">“让我更容易进入作业状态，卡住时还能继续自己做，写完后能自己发现并改正问题；每次作业，都比上一次更能靠自己完成。”</div>
@@ -459,19 +465,20 @@
     <section id="architecture" data-label="产品架构">
       <div class="slide">
         <div class="topline"><div class="chapter">03　业务框架</div><h1>作业工具业务框架</h1><div class="logo">步步高</div></div>
-        <p class="thesis">围绕“让孩子在作业中获得胜任感，逐步实现自主学习”，建立从核心产品、业务单元到核心系统和底层能力的四层框架。</p>
+        <p class="thesis">围绕“让孩子在作业中获得胜任感，逐步实现自主学习”，形成“核心产品—关键场景—支撑系统”的三层业务框架。</p>
         <div class="architecture">
           <div class="arch-level">L1<br>核心产品</div><div class="arch-box arch-half-left"><h3>孩子端｜自主作业成长助手</h3><p>帮助孩子更容易进入作业状态、卡住时继续自己做、写完后自己发现问题，在真实作业中持续积累“我能做到”的体验。</p></div><div class="arch-box arch-half-right"><h3>家长端｜作业过程反馈助手</h3><p>只呈现任务进度、求助情况和独立完成变化，让家长在必要时介入，不继续承担全程催、讲、查。</p></div>
           <aside class="arch-side"><h2>业务内核</h2><h3>产品理念</h3><p>让孩子在作业中获得胜任感，逐步实现自主学习。</p><h3>框架原则</h3><p>工具提供脚手架，关键动作由孩子完成；能力增长后，帮助逐步退出。</p><h3>演进方向</h3><p>先解决进入作业状态、卡住后继续自己做、写完后自己发现问题三项核心需求，再连接方法沉淀与长期成长证据。</p></aside>
           <div class="arch-level">L2<br>业务单元</div><div class="arch-box"><h3>作业状态进入</h3><p>确认任务、安排顺序、拆小第一步，帮助孩子开始完成第一项。</p></div><div class="arch-box"><h3>卡点诊断与分步引导</h3><p>识别卡点、给出适度提示，由孩子完成关键步骤并继续作答。</p></div><div class="arch-box"><h3>自主检查与订正</h3><p>提示可疑范围和检查方法，引导孩子自己发现、改正并说明原因。</p></div><div class="arch-box"><h3>方法沉淀</h3><p>总结同类题步骤、易错点和已掌握方法，为下次减少帮助。</p></div>
           <div class="arch-level">L3<br>核心系统</div><div class="arch-box"><h3>作业任务与进度系统</h3><p>任务识别与核销、顺序建议、第一步拆解、阶段进度和休息后拉回。</p></div><div class="arch-box"><h3>卡点诊断与引导系统</h3><p>读取题目和已有作答，判断障碍，生成分级提示和多种讲法。</p></div><div class="arch-box"><h3>检查与订正验证系统</h3><p>识别漏项和可疑点，提供检查方法，验证自主订正与微型迁移。</p></div><div class="arch-box"><h3>成长记录系统</h3><p>记录进入状态、独立作答、主动检查和方法掌握，控制帮助逐步退出。</p></div>
-          <div class="arch-level">L4<br>核心能力</div><div class="arch-box"><h3>孩子与作业画像</h3><p>年级、学科、能力基础、使用偏好和可接受帮助方式。</p></div><div class="arch-box"><h3>多模态作业理解</h3><p>任务、题目、手写过程、停顿、修改和语音意图识别。</p></div><div class="arch-box"><h3>学科与教学策略引擎</h3><p>解题校验、卡点分类、脚手架生成、方法提炼与迁移验证。</p></div><div class="arch-box"><h3>可信与安全机制</h3><p>答案核验、教材适配、内容边界、隐私保护和家长可见反馈。</p></div>
+
         </div>
-        <p class="architecture-note">待验证：首发优先节点、学科与年级范围、不同能力孩子的提示退出规则、准确率门槛、端云分工和版本节奏。</p>
+        <p class="architecture-note">下一步优先验证：先聚焦“卡住时继续自己做”，验证卡点诊断、分级提示和孩子独立完成率。</p>
       </div>
     </section>
 
   </main>
 </body>
 </html>
+
 
